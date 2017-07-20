@@ -1,0 +1,5 @@
+tensorflow==1
+keras==1.2.2
+opencv-python
+coremltools
+h5py
