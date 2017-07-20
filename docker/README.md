@@ -14,7 +14,7 @@ docker run --env PYTHONUNBUFFERED=x coreml
 docker run -t -i coreml /bin/bash
 ```
 
-### Run the model after loggin in to the container
+### Run the model
 ```
 python test.py
 ```
