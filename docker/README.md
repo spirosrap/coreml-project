@@ -1,14 +1,14 @@
-### Build container
+### Build the container
 ```
 docker build -t coreml .
 ```
 
-### Run container
+### Run the container
 ```
 docker run --env PYTHONUNBUFFERED=x coreml
 ```
 
-### Login to container
+### Login to the container
 
 ```
 docker run -t -i coreml /bin/bash
@@ -19,7 +19,7 @@ docker run -t -i coreml /bin/bash
 python test.py
 ```
 
-### Removing all containers
+### Removing all the containers
 
 ```
 docker rm `docker ps --no-trunc -aq`
