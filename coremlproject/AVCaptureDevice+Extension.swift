@@ -9,6 +9,31 @@
 import AVFoundation
 
 extension AVCaptureDevice {
+    
+    func updateFormatWithPreferredVideoSpec(fps: Float64)
+    {
+        let availableFormats: [AVCaptureDevice.Format]
+        availableFormats = availableFormatsFor(preferredFps: fps)
+        
+        var selectedFormat: AVCaptureDevice.Format?
+        selectedFormat = formatWithHighestResolution(availableFormats)
+        print("selected format: \(String(describing: selectedFormat))")
+        
+        if let selectedFormat = selectedFormat {
+            do {
+                try lockForConfiguration()
+            }
+            catch {
+                fatalError("")
+            }
+            activeFormat = selectedFormat
+            
+            activeVideoMinFrameDuration = CMTimeMake(1, Int32(fps))
+            activeVideoMaxFrameDuration = CMTimeMake(1, Int32(fps))
+            unlockForConfiguration()
+        }
+    }
+
     private func availableFormatsFor(preferredFps: Float64) -> [AVCaptureDevice.Format] {
         var availableFormats: [AVCaptureDevice.Format] = []
         for format in formats
@@ -52,38 +77,4 @@ extension AVCaptureDevice {
         return nil
     }
     
-    func updateFormatWithPreferredVideoSpec(preferredSpec: VideoSpec)
-    {
-        let availableFormats: [AVCaptureDevice.Format]
-        if let preferredFps = preferredSpec.fps {
-            availableFormats = availableFormatsFor(preferredFps: Float64(preferredFps))
-        }
-        else {
-            availableFormats = formats
-        }
-        
-        var selectedFormat: AVCaptureDevice.Format?
-        if let preferredSize = preferredSpec.size {
-            selectedFormat = formatFor(preferredSize: preferredSize, availableFormats: availableFormats)
-        } else {
-            selectedFormat = formatWithHighestResolution(availableFormats)
-        }
-        print("selected format: \(String(describing: selectedFormat))")
-        
-        if let selectedFormat = selectedFormat {
-            do {
-                try lockForConfiguration()
-            }
-            catch {
-                fatalError("")
-            }
-            activeFormat = selectedFormat
-            
-            if let preferredFps = preferredSpec.fps {
-                activeVideoMinFrameDuration = CMTimeMake(1, preferredFps)
-                activeVideoMaxFrameDuration = CMTimeMake(1, preferredFps)
-                unlockForConfiguration()
-            }
-        }
-    }
 }

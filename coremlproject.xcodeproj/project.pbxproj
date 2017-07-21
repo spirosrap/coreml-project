@@ -8,10 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		9F2B30AD1F1BEF2F00D238BF /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9FD94B471F114DBF00D33A8A /* Info.plist */; };
+		9FA487421F21805F00C47FE6 /* AVCaptureDevice+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA487401F2179B000C47FE6 /* AVCaptureDevice+Extension.swift */; };
 		9FA635D11F13EF6F006B48D3 /* SqueezeNet.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 9FA635D01F13EF1E006B48D3 /* SqueezeNet.mlmodel */; };
-		9FAF83191F115FAD00D0874A /* cat.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9FAF83181F115FAD00D0874A /* cat.jpg */; };
-		9FAF831B1F11641F00D0874A /* dog.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9FAF831A1F11641F00D0874A /* dog.jpg */; };
-		9FC9F7AE1F1823B70091ED42 /* AVCaptureDevice+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC9F7AD1F1823B70091ED42 /* AVCaptureDevice+Extension.swift */; };
 		9FD94B3C1F114DBF00D33A8A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD94B3B1F114DBF00D33A8A /* AppDelegate.swift */; };
 		9FD94B3E1F114DBF00D33A8A /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD94B3D1F114DBF00D33A8A /* MainViewController.swift */; };
 		9FD94B411F114DBF00D33A8A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9FD94B3F1F114DBF00D33A8A /* Main.storyboard */; };
@@ -20,10 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9FA487401F2179B000C47FE6 /* AVCaptureDevice+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVCaptureDevice+Extension.swift"; sourceTree = "<group>"; };
 		9FA635D01F13EF1E006B48D3 /* SqueezeNet.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = SqueezeNet.mlmodel; sourceTree = "<group>"; };
-		9FAF83181F115FAD00D0874A /* cat.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = cat.jpg; path = "../../Core ML Post/VGG16 trained model/cat.jpg"; sourceTree = "<group>"; };
-		9FAF831A1F11641F00D0874A /* dog.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = dog.jpg; path = "../../Core ML Post/VGG16 trained model/dog.jpg"; sourceTree = "<group>"; };
-		9FC9F7AD1F1823B70091ED42 /* AVCaptureDevice+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "AVCaptureDevice+Extension.swift"; path = "../../../Downloads/Core-ML-Sample-master/CoreMLSample/VideoCapture/AVCaptureDevice+Extension.swift"; sourceTree = "<group>"; };
 		9FD94B381F114DBF00D33A8A /* coremlproject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = coremlproject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FD94B3B1F114DBF00D33A8A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9FD94B3D1F114DBF00D33A8A /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -64,11 +60,9 @@
 			isa = PBXGroup;
 			children = (
 				9FA635D01F13EF1E006B48D3 /* SqueezeNet.mlmodel */,
-				9FAF831A1F11641F00D0874A /* dog.jpg */,
-				9FAF83181F115FAD00D0874A /* cat.jpg */,
 				9FD94B3B1F114DBF00D33A8A /* AppDelegate.swift */,
-				9FC9F7AD1F1823B70091ED42 /* AVCaptureDevice+Extension.swift */,
 				9FD94B3D1F114DBF00D33A8A /* MainViewController.swift */,
+				9FA487401F2179B000C47FE6 /* AVCaptureDevice+Extension.swift */,
 				9FD94B3F1F114DBF00D33A8A /* Main.storyboard */,
 				9FD94B421F114DBF00D33A8A /* Assets.xcassets */,
 				9FD94B441F114DBF00D33A8A /* LaunchScreen.storyboard */,
@@ -136,10 +130,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				9FD94B461F114DBF00D33A8A /* LaunchScreen.storyboard in Resources */,
-				9FAF831B1F11641F00D0874A /* dog.jpg in Resources */,
 				9F2B30AD1F1BEF2F00D238BF /* Info.plist in Resources */,
 				9FD94B431F114DBF00D33A8A /* Assets.xcassets in Resources */,
-				9FAF83191F115FAD00D0874A /* cat.jpg in Resources */,
 				9FD94B411F114DBF00D33A8A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -151,8 +143,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9FA487421F21805F00C47FE6 /* AVCaptureDevice+Extension.swift in Sources */,
 				9FD94B3E1F114DBF00D33A8A /* MainViewController.swift in Sources */,
-				9FC9F7AE1F1823B70091ED42 /* AVCaptureDevice+Extension.swift in Sources */,
 				9FA635D11F13EF6F006B48D3 /* SqueezeNet.mlmodel in Sources */,
 				9FD94B3C1F114DBF00D33A8A /* AppDelegate.swift in Sources */,
 			);
