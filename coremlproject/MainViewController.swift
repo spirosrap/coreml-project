@@ -47,6 +47,7 @@ class MainViewController: UIViewController,AVCapturePhotoCaptureDelegate,AVCaptu
         previewView.contentMode = .scaleAspectFill
         view.addSubview(previewView)
         
+        //Start the camera when launching
         self.setupAVCapture()
         albumButton.isEnabled = false
         streaming = true
@@ -60,10 +61,11 @@ class MainViewController: UIViewController,AVCapturePhotoCaptureDelegate,AVCaptu
         previewView.layer.addSublayer(previewLayer)
     }
     
-    @objc func onClickMyButton(sender: UIButton){
-        print("button pressed")
-    }
     
+    //The button for using video to detect object. The app runs
+    //with the camera open. Pressing the button stops the camera
+    //and enables the photo libary button with which we can input
+    //an image to detect the object
     @IBAction func streaming(_ sender: Any) {
         if(streaming){
             session.stopRunning()
@@ -107,9 +109,7 @@ class MainViewController: UIViewController,AVCapturePhotoCaptureDelegate,AVCaptu
         return strings
     }
     
-    
 
-    
     func photoOutput(_ captureOutput: AVCapturePhotoOutput,  didFinishProcessingPhoto photoSampleBuffer: CMSampleBuffer?,  previewPhoto previewPhotoSampleBuffer: CMSampleBuffer?, resolvedSettings:  AVCaptureResolvedPhotoSettings, bracketSettings:   AVCaptureBracketedStillImageSettings?, error: Error?) {
         
         if let error = error {
@@ -137,7 +137,7 @@ class MainViewController: UIViewController,AVCapturePhotoCaptureDelegate,AVCaptu
     }
     
 
-    
+    //Captures output from the video (The input are the frames)
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         if connection.videoOrientation != .portrait {
             connection.videoOrientation = .portrait
@@ -162,10 +162,11 @@ class MainViewController: UIViewController,AVCapturePhotoCaptureDelegate,AVCaptu
 
     
     
-    
+    //Start capturing from Camera
     func setupAVCapture(){
         session.sessionPreset = AVCaptureSession.Preset.cif352x288
-        guard let device = AVCaptureDevice.default(.builtInWideAngleCamera, for: AVMediaType.video, position: .back) else{
+        
+        guard let device = AVCaptureDevice.default(for: AVMediaType.video) else{
             return
         }
         
@@ -210,7 +211,7 @@ class MainViewController: UIViewController,AVCapturePhotoCaptureDelegate,AVCaptu
 
     
     /// resize CVPixelBuffer
-    ///
+    /// Resize the image to 227x227 which is the format that the model expects
     /// - Parameter pixelBuffer: CVPixelBuffer by camera output
     /// - Returns: CVPixelBuffer with size (299, 299)
     func resize(pixelBuffer: CVPixelBuffer) -> CVPixelBuffer? {
@@ -225,7 +226,7 @@ class MainViewController: UIViewController,AVCapturePhotoCaptureDelegate,AVCaptu
         return resizeBuffer
     }
     
-    
+    //Convert from UIImage to CVPixelBuffer which is the format that the predictor requires
     func buffer(from image: UIImage) -> CVPixelBuffer? {
         let attrs = [kCVPixelBufferCGImageCompatibilityKey: kCFBooleanTrue, kCVPixelBufferCGBitmapContextCompatibilityKey: kCFBooleanTrue] as CFDictionary
         var pixelBuffer : CVPixelBuffer?

@@ -5,11 +5,13 @@
 //  Created by 杨萧玉 on 2017/6/9.
 //  Copyright © 2017年 杨萧玉. All rights reserved.
 //  Based on Shuichi Tsutsumi's Code
+//  The following code is modified from https://github.com/yulingtianxia/Core-ML-Sample
 
 import AVFoundation
 
 extension AVCaptureDevice {
     
+    //Set the format of the video with a specific fps value.
     func updateFormatWithPreferredVideoSpec(fps: Float64)
     {
         let availableFormats: [AVCaptureDevice.Format]
@@ -33,7 +35,7 @@ extension AVCaptureDevice {
             unlockForConfiguration()
         }
     }
-
+    //Return all the available formats for the video
     private func availableFormatsFor(preferredFps: Float64) -> [AVCaptureDevice.Format] {
         var availableFormats: [AVCaptureDevice.Format] = []
         for format in formats
@@ -46,7 +48,7 @@ extension AVCaptureDevice {
         }
         return availableFormats
     }
-    
+    // Select the format with the highest resolution
     private func formatWithHighestResolution(_ availableFormats: [AVCaptureDevice.Format]) -> AVCaptureDevice.Format?
     {
         var maxWidth: Int32 = 0
@@ -63,18 +65,5 @@ extension AVCaptureDevice {
         return selectedFormat
     }
     
-    private func formatFor(preferredSize: CGSize, availableFormats: [AVCaptureDevice.Format]) -> AVCaptureDevice.Format?
-    {
-        for format in availableFormats {
-            let desc = format.formatDescription
-            let dimensions = CMVideoFormatDescriptionGetDimensions(desc)
-            
-            if dimensions.width >= Int32(preferredSize.width) && dimensions.height >= Int32(preferredSize.height)
-            {
-                return format
-            }
-        }
-        return nil
-    }
     
 }
