@@ -8,6 +8,9 @@ from keras import backend as K
 import csv
 import coremltools
 from keras import models
+import sys
+import imghdr
+import os.path
 
 def VGG_16(weights_path=None):
     model = Sequential()
@@ -60,9 +63,18 @@ def VGG_16(weights_path=None):
     return model
 
 if __name__ == "__main__":
+
+
+
     K.set_image_dim_ordering('th')
 
-    img = cv2.resize(cv2.imread('dog.jpg'), (224, 224)).astype(np.float32)
+    ## Check if there input filename exists
+    if os.path.exists(sys.argv[1]) == False:
+        print("Please enter a valid filename")
+        exit()
+
+    input_image = cv2.imread(sys.argv[1])
+    img = cv2.resize(input_image, (224, 224)).astype(np.float32)
     mean_pixel = [103.939, 116.779, 123.68]
     img = img.astype(np.float32, copy=False)
     for c in range(3):

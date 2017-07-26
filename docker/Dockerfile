@@ -21,5 +21,5 @@ RUN wget "https://dl.dropbox.com/s/kbqydhd1s5xqu6k/vgg16_weights.h5"
 ENV NAME World
 ENV PYTHONUNBUFFERED x
 
-# Run app.py when the container launches
-CMD ["python", "test.py"]
+
+RUN python test.py dog.jpg

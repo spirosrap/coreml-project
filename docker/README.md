@@ -16,7 +16,7 @@ docker run -t -i coreml /bin/bash
 
 ### Run the model
 ```
-python test.py
+python test.py "dog.jpg"
 ```
 
 ### Removing all the containers
